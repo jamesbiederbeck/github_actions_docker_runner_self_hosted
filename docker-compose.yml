@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  github-runner:
+    image: git.hiddencove.xyz/actions/github_runner:latest
+    container_name: github_runner
+    environment:
+      - RUNNER_TOKEN=${RUNNER_TOKEN}   # The token will be passed at runtime
+      - GITHUB_URL=https://github.com/${REPOSITORY_NAME}   # Repo URL for the GitHub Runner
+    volumes:
+      - ./actions-runner:/actions-runner
+    restart: always
